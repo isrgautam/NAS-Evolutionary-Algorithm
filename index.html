@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge AI for Sustainable Agriculture</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Edge AI for Sustainable Agriculture</h1>
+            <p>Hardware-aware Neural Architecture Search (NAS) for Efficient Crop Disease Detection </p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <h2 class="section-heading"> CORE MODEL ACHIEVEMENTS</h2>
+        
+        <section id="metrics-summary">
+            
+            <div class="highlight-box">
+                <div class="metric-card">
+                    <h3>TOTAL PARAMETERS</h3>
+                    <p class="data">1.53M</p>
+                    <p class="detail">Compact size for Edge Device deployment.</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>TOTAL MACS</h3>
+                    <p class="data">490M</p>
+                    <p class="detail">Multiply-Accumulate Operations (Low Inference Cost).</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>VALIDATION ACCURACY</h3>
+                    <p class="data">97.50%</p>
+                    <p class="detail">Final performance on held-out dataset.</p>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="resource-efficiency">
+            <div class="resource-box">
+                <h2>Resource Efficiency Overview</h2>
+                <p>The optimized model achieves a strong balance between model capacity and computational efficiency. The balanced design makes the architecture suitable for resource-constrained environments.</p>
+                <p>The neural architecture search successfully identified an efficient, accurate model ready for production deployment.</p>
+                
+                <div class="efficiency-data">
+                    <p>Standard Input Resolution: <strong>224 x 224 pixels</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prediction">
+            <h2 class="section-heading"> LIVE PREDICTION INTERFACE</h2>
+            <p>Test the high-efficiency model directly. Upload an image to see the classification result and confidence score from the Edge AI</p>
+            <div class="prediction-area">
+                
+                <div class="image-input-col">
+                    <h3> Select Image</h3>
+                    <div class="image-placeholder" id="dropArea">
+                        <span id="placeholderText">Drag & Drop Image or Click to Select</span>
+                        <input type="file" id="imageUpload" accept="image/*" hidden>
+                        <img id="imagePreview" src="#" alt="Image Preview" style="display:none;">
+                    </div>
+                    <button class="download-btn" id="predictBtn" disabled style="background-color: var(--color-accent);">PREDICT</button>
+                </div>
+        
+                <div class="result-col">
+                    <h3> Diagnosis Result</h3>
+                    <div class="result-box" id="resultBox">
+                        <p class="placeholder-text">Upload an image and click 'PREDICT' to see the results.</p>
+                        
+                        <div id="diagnosisResult" style="display:none;">
+                            <p>Predicted Disease:</p>
+                            <h3 style="margin-bottom: 5px;"><span id="diseaseName" style="color:var(--color-dark);">---</span></h3>
+                            
+                            <p>Confidence Score:</p>
+                            <span class="confidence-score" id="confidenceValue">---</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="documentation">
+            <h2 class="section-heading">MODEL DOCUMENTATION & PERFORMANCE</h2>
+            
+            <div class="doc-section">
+                <h3>The Optimal Architecture Configuration</h3>
+                <p>The Neural Architecture Search process identified an optimal 5-stage architecture containing 13 MBConv layers, distributed strategically for maximum efficiency and feature extraction.</p>
+                
+                <div class="table-container">
+                    <table class="arch-table">
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Channels</th>
+                                <th>Depth (Blocks)</th>
+                                <th>Stride</th>
+                                <th>Block Type & Kernel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1: Foundation</td>
+                                <td>16</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>Single block with 3x5 kernel and expansion factor 3</td>
+                            </tr>
+                            <tr>
+                                <td>2: Initial Expansion</td>
+                                <td>24</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>Block 1: 3x5 kernel (exp 3), Block 2: 3x3 kernel (exp 3)</td>
+                            </tr>
+                            <tr>
+                                <td>3: Deep Processing</td>
+                                <td>32</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>All 4 blocks use uniform 6x3 kernels for consistent feature extraction</td>
+                            </tr>
+                            <tr>
+                                <td>4: Mixed Receptive Fields</td>
+                                <td>64</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>Heterogeneous design: 6x3, 3x5, 6x5, 3x3 kernels for diverse feature capture</td>
+                            </tr>
+                            <tr>
+                                <td>5: Final Representation</td>
+                                <td>96</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>Two 6x5 kernel blocks for high-level feature aggregation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">Total Core Layers: 13 MBConv blocks (plus input/output conv and classifier).</p>
+            </div>
+            
+            <div class="download-section">
+                <h3>Downloadable Artifacts</h3>
+                <p>For reproducibility, the final architecture definition and trained weights are available:</p>
+                <div class="download-buttons">
+                    <a href="best_architecture.json" download class="download-btn secondary-btn">Download Architecture (.json)</a>
+                    <a href="final_model_best_weights.pth" download class="download-btn secondary-btn">Download Trained Weights (.pth)</a>
+                </div>
+            </div>
+            
+            <div class="doc-section">
+                <h3>Relative Performance Comparison</h3>
+                <p>To demonstrate the efficiency achieved, our AutoNAS model is benchmarked against standard mobile and general-purpose architectures.</p>
+                
+                <div class="table-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>MACs (Millions)</th>
+                                <th>Params (Millions)</th>
+                                <th>Key Takeaway</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Our "AutoNAS Model"</td>
+                                <td>490 M</td>
+                                <td>1.53 M</td>
+                                <td>✅ Optimized balance; Lowest Parameters.</td>
+                            </tr>
+                            <tr>
+                                <td>MobileNetV2 (1.0x)</td>
+                                <td>300-600 M</td>
+                                <td>3.4 M</td>
+                                <td>Similar compute, but requires more than twice the parameters.</td>
+                            </tr>
+                            <tr>
+                                <td>EfficientNet-B0</td>
+                                <td>390 M</td>
+                                <td>5.3 M</td>
+                                <td>Slightly fewer MACs but significantly heavier in parameters.</td>
+                            </tr>
+                            <tr>
+                                <td>ResNet-18</td>
+                                <td>1,800 M</td>
+                                <td>11.7 M</td>
+                                <td>A much larger and less efficient model for edge deployment.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">This comparison validates the "efficiency gain" achieved by the Neural Architecture Search process.</p>
+            </div>
+        </section>
+        </main>
+<script src="script.js"></script>
+
+    </body> </html>
